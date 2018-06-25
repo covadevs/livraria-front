@@ -6,12 +6,16 @@ app.config(function ($routeProvider) {
         templateUrl: 'views/home.html'
     })
     .when('/authors', {
-        controller: 'HomeController',
+        controller: 'AuthorController',
         templateUrl: 'views/authors.html'
     })
     .when('/authors/:id', {
         controller: 'AuthorController',
         templateUrl: 'views/author.html'
+    })
+    .when('/authors/:id/edit', {
+        controller: 'AuthorController',
+        templateUrl: 'views/edit-author.html'
     })
     .when('/books', {
         controller: 'BookController',

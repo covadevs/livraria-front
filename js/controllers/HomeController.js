@@ -1,5 +1,5 @@
-app.controller('HomeController', ['$scope', 'authorsFactory', function($scope, authorsFactory){
-    authorsFactory.getAuthors.success(function(data) {
-        $scope.authors = data;
-    });
+app.controller('HomeController', ['$scope', 'booksFactory', function($scope, booksFactory){
+    booksFactory.getBooks.success(function(data) {
+        $scope.books = data
+    })
 }]);

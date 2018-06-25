@@ -1,0 +1,7 @@
+<h1>Author {{authorDetail.name}}</h1>
+
+<form>
+    <input ng-model="authorName" value="{{authorDetail.name}}" type="text" placeholder="Your name here" name="authorName" required/>
+    <button type="submit" ng-click="editAuthor(authorName)">ATUALIZAR</button>
+</form>
+<pre> author = {{authorDetail | json}}</pre>

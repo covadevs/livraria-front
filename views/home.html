@@ -1,4 +1,11 @@
 <h1>Livraria</h1>
-  
+
+<div>
+    <h2>Recent Books</h2>
+    <div ng-repeat="book in books" style="border-style:solid; margin:10px; padding: 5px">
+        <h2> {{ book.title }} </h2>
+        <h2> {{ book.description }} </h2>
+    </div>
+</div>
   
   

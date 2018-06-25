@@ -4,8 +4,9 @@
         <div>
         <div ng-repeat="author in authors">
             <a href="#/authors/{{author.id}}">
-            <p>{{ author.name }}</p>
+                <p>{{ author.name }}</p>
             </a>
+            <button ng-click="goAuthorEdit(author.id)" name="editAuthor" value="{{$index}}">EDIT</button>
         </div>
         </div>
     </div>

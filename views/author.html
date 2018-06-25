@@ -1,6 +1,10 @@
 <div>
-  <div>
-    <h2>Name: {{ authorDetail.name }} </h2>
-  </div>
+    <div>
+      <h2>Author {{ authorDetail.name }} </h2>
+      <h2>Author Books</h2>
+        <div ng-repeat="authorBook in authorBooks" style="border-style:solid; margin:10px; padding: 5px">
+            <h2> {{ authorBook.title }} </h2>
+            <h2> {{ authorBook.description }} </h2>
+        </div>
+    </div>
 </div>
-  
