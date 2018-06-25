@@ -1,0 +1,12 @@
+<div>
+    <div>
+        <h2>Recent Books</h2>
+        <div>
+        <div ng-repeat="book in books">
+            <a href="#/books/{{book.id}}">
+            <p>{{ book.title }}</p>
+            </a>
+        </div>
+        </div>
+    </div>
+</div>

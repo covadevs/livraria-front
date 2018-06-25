@@ -13,6 +13,14 @@ app.config(function ($routeProvider) {
         controller: 'AuthorController',
         templateUrl: 'views/author.html'
     })
+    .when('/books', {
+        controller: 'BookController',
+        templateUrl: 'views/books.html'
+    })
+    .when('/books/:id', {
+        controller: 'BookController',
+        templateUrl: 'views/book.html'
+    })
     .otherwise({
         redirectTo: '/'
     });
