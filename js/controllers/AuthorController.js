@@ -1,26 +1,65 @@
-app.controller('AuthorController', ['$scope', 'authorsFactory', '$routeParams', '$location', function($scope, authorsFactory, $routeParams, $location) {
-    authorsFactory.getAuthors().success(function (data){
-        $scope.authorDetail = data.find(element => {
-            return element.id == $routeParams.id
+app.controller('AuthorController', AuthorController)
+
+AuthorController.$inject = ['$scope', 'authorFactory', '$routeParams', '$location']
+
+function AuthorController($scope, authorFactory, $routeParams, $location) {
+    var vm = this;
+
+    vm.authors = []
+    vm.authorDetail = []
+    vm.authorBooks = []
+
+    getAuthors()
+    getAuthorBooks()
+    getAuthorDetail()
+    
+    var data = {
+        authors: vm.authors,
+        authorDetail: vm.authorDetail,
+        authorBooks: vm.authorBooks
+    };
+
+    async function getAuthorDetail() {
+        let promise = authorFactory.getAuthors().then(function(data){
+                vm.authorDetail = data.find(element => {
+                return element.id == $routeParams.id
+            })
         })
-    })
 
-    authorsFactory.getAuthorBooks().success(function(data) {
-        $scope.authorBooks = data;
-    })
+        let result = await promise
 
-    authorsFactory.getAuthors().success(function(data) {
-        $scope.authors = data;
-    });
+        return data.authorDetail
+    }
 
-    $scope.editAuthor = function(authorName) {
-        $scope.authorDetail.name = authorName
-        authorsFactory.editAuthor($scope.authorDetail).success(function(data) {
+    async function getAuthorBooks() {
+        let promise = authorFactory.getAuthorBooks().then(function(data) {
+            vm.authorBooks = data;
+        })
+
+        let result = await promise
+
+        return data.authorBooks
+    }
+
+    async function getAuthors() {
+        let promise = authorFactory.getAuthors().then(function(data) {
+            vm.authors = data;
+            console.log(vm.authors)
+        });
+
+        let result = await promise
+
+        return data.authors
+    }
+
+    function editAuthor(authorName) {
+        vm.authorDetail.name = authorName
+        authorFactory.editAuthor(vm.authorDetail).success(function(data) {
             console.log("info: "+data)
         });
     }
 
-    $scope.goAuthorEdit = function(authorId) {
+    function goAuthorEdit(authorId) {
         $location.url("/authors/"+authorId+"/edit")
-    };
-}])
+    }
+}

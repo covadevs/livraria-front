@@ -2,12 +2,13 @@
     <div>
         <h2>Recent Authors</h2>
         <div>
-        <div ng-repeat="author in authors">
+        <div ng-repeat="author in Authors.authors">
             <a href="#/authors/{{author.id}}">
                 <p>{{ author.name }}</p>
             </a>
-            <button ng-click="goAuthorEdit(author.id)" name="editAuthor" value="{{$index}}">EDIT</button>
+            <button ng-click="Authors.goAuthorEdit(author.id)" name="editAuthor" value="{{$index}}">EDIT</button>
         </div>
         </div>
     </div>
 </div>
+
