@@ -11,6 +11,16 @@ app.config(function ($routeProvider) {
         controllerAs: 'Authors',
         templateUrl: 'views/authors.html'
     })
+    .when('/authors/add', {
+        controller: 'AuthorController',
+        controllerAs: 'AuthorAdd',
+        templateUrl: 'views/add-author.html'
+    })
+    .when('/books', {
+        controller: 'BookController',
+        controllerAs: 'Books',
+        templateUrl: 'views/books.html'
+    })
     .when('/authors/:id', {
         controller: 'AuthorController',
         controllerAs: 'Author',
@@ -18,12 +28,8 @@ app.config(function ($routeProvider) {
     })
     .when('/authors/:id/edit', {
         controller: 'AuthorController',
+        controllerAs: 'AuthorEdit',
         templateUrl: 'views/edit-author.html'
-    })
-    .when('/books', {
-        controller: 'BookController',
-        controllerAs: 'Books',
-        templateUrl: 'views/books.html'
     })
     .when('/books/:id', {
         controller: 'BookController',

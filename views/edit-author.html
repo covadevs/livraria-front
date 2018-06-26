@@ -1,7 +1,6 @@
-<h1>Author {{vm.authorDetail.name}}</h1>
+<h1>Author {{AuthorEdit.authorDetail.name}}</h1>
 
 <form>
-    <input ng-model="authorName" value="{{authorDetail.name}}" type="text" placeholder="Your name here" name="authorName" required/>
-    <button type="submit" ng-click="editAuthor(authorName)">ATUALIZAR</button>
+    <input ng-model="AuthorEdit.authorDetail.name"  type="text" placeholder="Your name here" required/>
+    <button type="submit" ng-click="editAuthor(AuthorEdit.authorDetail.name)">ATUALIZAR</button>
 </form>
-<pre> author = {{vm.authorDetail | json}}</pre>

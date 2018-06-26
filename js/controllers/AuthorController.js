@@ -8,7 +8,13 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
     vm.authors = []
     vm.authorDetail = []
     vm.authorBooks = []
-
+    
+    vm.authorName = ""
+    
+    vm.authorNew = {
+        name: ""
+    }
+    
     getAuthors()
     getAuthorBooks()
     getAuthorDetail()
@@ -16,7 +22,8 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
     var data = {
         authors: vm.authors,
         authorDetail: vm.authorDetail,
-        authorBooks: vm.authorBooks
+        authorBooks: vm.authorBooks,
+        authorNew: vm.authorNew,
     };
 
     async function getAuthorDetail() {
@@ -27,7 +34,6 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
         })
 
         let result = await promise
-
         return data.authorDetail
     }
 
@@ -44,7 +50,6 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
     async function getAuthors() {
         let promise = authorFactory.getAuthors().then(function(data) {
             vm.authors = data;
-            console.log(vm.authors)
         });
 
         let result = await promise
@@ -52,14 +57,32 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
         return data.authors
     }
 
-    function editAuthor(authorName) {
+    $scope.goAddAuthor = function() {
+        $location.url("/authors/add")
+    }
+
+    $scope.addAuthor = function(authorData) {
+        authorFactory.addAuthor(authorData).then(function(data) {
+            $location.url("/authors")
+        })
+    }
+
+    $scope.editAuthor = function (authorName) {
         vm.authorDetail.name = authorName
-        authorFactory.editAuthor(vm.authorDetail).success(function(data) {
-            console.log("info: "+data)
+        authorFactory.editAuthor(vm.authorDetail).then(function(data) {
+            $location.url("/authors")
         });
     }
 
-    function goAuthorEdit(authorId) {
+    $scope.goAuthorEdit = function (authorId) {
         $location.url("/authors/"+authorId+"/edit")
+    }
+
+    $scope.removeAuthor = function(authorId, index) {
+        authorFactory.removeAuthor(authorId).then(function(data) {
+            console.log(data)
+            vm.authors.splice(index, 1)
+            $.notify('Author removed', 'success');
+        })
     }
 }

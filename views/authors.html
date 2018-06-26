@@ -1,14 +1,27 @@
 <div>
     <div>
-        <h2>Recent Authors</h2>
-        <div>
-        <div ng-repeat="author in Authors.authors">
-            <a href="#/authors/{{author.id}}">
-                <p>{{ author.name }}</p>
-            </a>
-            <button ng-click="Authors.goAuthorEdit(author.id)" name="editAuthor" value="{{$index}}">EDIT</button>
-        </div>
-        </div>
+        <table id="t01">
+            <tr>
+                <th>
+                    <div style="display: inline-block; vertical-align: center">
+                        Author
+                        <button class="add-button" ng-click="goAddAuthor()" value="add">ADD</button>
+                    </div>
+                </th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat="author in Authors.authors">
+                <td><a id="authorNameLink" href="#/authors/{{author.id}}"> {{ author.name }} </a></td>
+                <td>
+                    <div style="display: inline-block; vertical-align: center">
+                        <button class="button" ng-click="goAuthorEdit(author.id)" value="{{$index}}">EDIT</button>
+                        <button class="button" ng-click="removeAuthor(author.id, $index)" value="{{$index}}">REMOVE</button>
+                        <button class="button" ng-click="goToAddToBook(author.id)" value="{{$index}}">ADD TO BOOK</button>
+                        <button class="button" ng-click="goToaddToBook(author.id)" value="{{$index}}">REMOVE FROM BOOK</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
 
