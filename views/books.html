@@ -6,12 +6,22 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Authors</th>
+                <th>Actions</tg>
             </tr>
             <tr ng-if="Books.books.length > 0" ng-repeat="book in Books.books">
                 <td>{{book.id}}</td>
                 <td>{{book.title}}</td>
                 <td>{{book.description}}</td>
-                <td><span ng-repeat="author in book.authors">{{author.name}}</span><br></td>
+                <td><span ng-repeat="author in book.authors">
+                        {{author.name}}<span ng-if="$index < book.authors.length-1">,</span><br>
+                    </span>
+                </td>
+                <td>
+                    <div style="display: inline-block; vertical-align: center">
+                        <button class="button" ng-click="goAuthorEdit(author.id)" value="{{$index}}">EDIT</button>
+                        <button class="button" ng-click="removeAuthor(author.id, $index)" value="{{$index}}">REMOVE</button>
+                    </div>
+                </td>
             </tr>
         </table>
     </div>

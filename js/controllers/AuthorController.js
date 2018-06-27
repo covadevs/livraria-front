@@ -8,6 +8,8 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
     vm.authors = []
     vm.authorDetail = []
     vm.authorBooks = []
+
+    vm.booksAuthorNotContains = []
     
     vm.authorName = ""
     
@@ -24,6 +26,7 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
         authorDetail: vm.authorDetail,
         authorBooks: vm.authorBooks,
         authorNew: vm.authorNew,
+        booksAuthorNotContains: vm.booksAuthorNotContains,
     };
 
     async function getAuthorDetail() {
@@ -61,6 +64,10 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
         $location.url("/authors/add")
     }
 
+    $scope.goAddAuthorToBook = function(authorId) {
+        $location.url("/authors/"+authorId+"/add-to-book")
+    }
+
     $scope.addAuthor = function(authorData) {
         authorFactory.addAuthor(authorData).then(function(data) {
             $location.url("/authors")
@@ -80,9 +87,13 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
 
     $scope.removeAuthor = function(authorId, index) {
         authorFactory.removeAuthor(authorId).then(function(data) {
-            console.log(data)
             vm.authors.splice(index, 1)
-            $.notify('Author removed', 'success');
+        })
+    }
+
+    $scope.removeAuthorFromBook = function(authorId, bookId, index) {
+        authorFactory.removeAuthorFromBook(authorId, bookId).then(function(data) {
+            vm.authorBooks.splice(index, 1)
         })
     }
 }

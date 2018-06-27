@@ -1,6 +1,6 @@
 <div>
     <div>
-        <table id="t01">
+        <table>
             <tr>
                 <th>
                     <div style="display: inline-block; vertical-align: center">
@@ -8,16 +8,15 @@
                         <button class="add-button" ng-click="goAddAuthor()" value="add">ADD</button>
                     </div>
                 </th>
-                <th>Actions</th>
+                <th></th>
             </tr>
             <tr ng-repeat="author in Authors.authors">
                 <td><a id="authorNameLink" href="#/authors/{{author.id}}"> {{ author.name }} </a></td>
                 <td>
-                    <div style="display: inline-block; vertical-align: center">
+                    <div style="float: right">
                         <button class="button" ng-click="goAuthorEdit(author.id)" value="{{$index}}">EDIT</button>
                         <button class="button" ng-click="removeAuthor(author.id, $index)" value="{{$index}}">REMOVE</button>
-                        <button class="button" ng-click="goToAddToBook(author.id)" value="{{$index}}">ADD TO BOOK</button>
-                        <button class="button" ng-click="goToaddToBook(author.id)" value="{{$index}}">REMOVE FROM BOOK</button>
+                        <button class="button" ng-click="goAddAuthorToBook(author.id)" value="{{$index}}">ADD TO BOOK</button>
                     </div>
                 </td>
             </tr>

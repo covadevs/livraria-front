@@ -31,6 +31,11 @@ app.config(function ($routeProvider) {
         controllerAs: 'AuthorEdit',
         templateUrl: 'views/edit-author.html'
     })
+    .when('/authors/:id/add-to-book', {
+        controller: 'BookController',
+        controllerAs: 'AuthorsAddToBook',
+        templateUrl: 'views/add-to-book-author.html'
+    })
     .when('/books/:id', {
         controller: 'BookController',
         controllerAs: 'Book',

@@ -8,9 +8,12 @@ function BookController($scope, $routeParams, bookFactory) {
     vm.books = []
     vm.bookDetail = []
 
+    vm.booksAuthorNotContains = []
+
     var data = {
         books: vm.books,
-        bookDetal: vm.bookDetail
+        bookDetal: vm.bookDetail,
+        booksAuthorNotContains: vm.booksAuthorNotContains
     }
 
     getBooks()
@@ -36,5 +39,21 @@ function BookController($scope, $routeParams, bookFactory) {
         let result = await promise
 
         return data.bookDetail
+    }
+
+    $scope.addAuthorToBook = function(bookId, index) {
+        const authorId = $routeParams.id
+        bookFactory.addAuthorToBook(authorId, bookId).then(function(data) {
+            console.log(data)
+            vm.booksAuthorNotContains.splice(index,1)
+        })
+    }
+
+    $scope.getBooksAuthorNotContains = function () {
+        const authorId = $routeParams.id
+        bookFactory.getBooksAuthorNotContains(authorId).then(function(data) {
+            vm.booksAuthorNotContains = data
+            return data.booksAuthorNotContains
+        })
     }
 }

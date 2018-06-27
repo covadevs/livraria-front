@@ -6,11 +6,13 @@ function authorFactory($http, $routeParams, $log) {
   const URL_API = "http://localhost:8080";
 
   var services = {
-      getAuthors      : getAuthors,
-      getAuthorBooks  : getAuthorBooks,
-      editAuthor: editAuthor,
-      removeAuthor: removeAuthor,
-      addAuthor: addAuthor,
+      getAuthors            : getAuthors,
+      getAuthorBooks        : getAuthorBooks,
+      editAuthor            : editAuthor,
+      removeAuthor          : removeAuthor,
+      addAuthor             : addAuthor,
+      removeAuthorFromBook  : removeAuthorFromBook,
+      addAuthorToBook       : addAuthorToBook,
   };
 
   return services;
@@ -84,6 +86,34 @@ function authorFactory($http, $routeParams, $log) {
 
             function removeAuthorFailed(error) {
               $log.error('XHR Failed for removeAuthor.' + error.data)
+            }
+  }
+
+  function removeAuthorFromBook(authorId, bookId) {
+    return $http.delete(URL_API+'/authors/'+authorId+'/books/'+bookId)
+            .then(removeAuthorFromBookComplete)
+            .catch(removeAuthorFromBookFailed)
+
+            function removeAuthorFromBookComplete(response) {
+              return response.data
+            }
+
+            function removeAuthorFromBookFailed(error) {
+              $log.error('XHR Failed for removeAuthorFromBook.' + error.data)
+            }
+  }
+
+  function addAuthorToBook(authorId, bookId) {
+    return $http.post(URL_API+'/books/'+bookId+'/authors?authorId='+authorId)
+            .then(addAuthorToBookComplete)
+            .catch(addAuthorToBookFailed)
+
+            function addAuthorToBookComplete(response) {
+              return response.data
+            }
+
+            function addAuthorToBookFailed(error) {
+              $log.error('XHR Failed for addAuthorToBook.' + error.data)
             }
   }
 }

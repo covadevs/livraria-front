@@ -6,14 +6,18 @@
                 <th>ID</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
             <tr ng-if="Author.authorBooks.length > 0" ng-repeat="authorBook in Author.authorBooks">
-                <td class="th-id">{{authorBook.id}}</td>
+                <td>{{authorBook.id}}</td>
                 <td>{{authorBook.title}}</td>
                 <td>{{authorBook.description}}</td>
+                <td>
+                    <button class="button" ng-click="removeAuthorFromBook(Author.authorDetail.id, authorBook.id, $index)" value="{{$index}}">REMOVE ME</button>
+                </td>
             </tr>
             <tr ng-if="Author.authorBooks.length == 0">
-                <td colspan=3 align="center"> No Data </td>
+                <td colspan=4 align="center"> No Data </td>
             </tr>
         </table>
     </div>
