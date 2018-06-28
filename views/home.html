@@ -1,9 +1,11 @@
-<h1>Livraria</h1>
-
-<div>
-    <h2>Recent Books</h2>
-    <div ng-repeat="book in BooksHome.books" style="border-style:solid; margin:10px; padding: 5px">
-        <h2> {{ book.title }} </h2>
-        <h2> {{ book.description }} </h2>
-    </div>
+<div style="position: fixed;  background-color: #333; padding: 10px; width: 100%; z-index: 500;">
+    <h2 style="color: white;text-transform: uppercase;">Recent Books</h2>
 </div>
+<div class="clear-top"></div>
+<div class="card" ng-repeat="book in BooksHome.books">
+    <img src="img/art_bookcover.png" alt="Avatar" style="width:100%;">
+    <div>
+      <h4><b> {{ book.title }} </b></h4> 
+      <p>{{ book.description }}</p> 
+    </div>
+  </div>

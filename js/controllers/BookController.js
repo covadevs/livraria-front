@@ -1,19 +1,27 @@
 app.controller('BookController', BookController)
 
-BookController.$inject = ['$scope', '$routeParams', 'bookFactory']
+BookController.$inject = ['$scope', '$routeParams', 'bookFactory', '$location', 'authorFactory']
 
-function BookController($scope, $routeParams, bookFactory) {
+function BookController($scope, $routeParams, bookFactory, $location, authorFactory) {
     var vm = this;
 
     vm.books = []
     vm.bookDetail = []
 
     vm.booksAuthorNotContains = []
+    vm.authorDetail = []
+
+    vm.newBook = {
+        title: '',
+        description: ''
+    }
 
     var data = {
         books: vm.books,
         bookDetal: vm.bookDetail,
-        booksAuthorNotContains: vm.booksAuthorNotContains
+        booksAuthorNotContains: vm.booksAuthorNotContains,
+        newBook: vm.newBook,
+        authorDetail: vm.authorDetail
     }
 
     getBooks()
@@ -49,11 +57,47 @@ function BookController($scope, $routeParams, bookFactory) {
         })
     }
 
-    $scope.getBooksAuthorNotContains = function () {
+    $scope.getBooksAuthorNotContains = async function () {
         const authorId = $routeParams.id
-        bookFactory.getBooksAuthorNotContains(authorId).then(function(data) {
+        let promise1 = bookFactory.getBooksAuthorNotContains(authorId).then(function(data) {
             vm.booksAuthorNotContains = data
-            return data.booksAuthorNotContains
+        })
+
+        let result1 = await promise1
+
+        let promise2 = authorFactory.getAuthor(authorId).then(function(data) {
+            vm.authorDetail = data
+            console.log(vm.authorDetail)
+        })
+
+        let result2 = await promise2
+
+        return data
+    }
+
+    $scope.goAddBook = function() {
+        $location.url('/books/add')
+    }
+
+    $scope.goEditBook = function(bookId) {
+        $location.url('/books/'+bookId+'/edit')
+    }
+
+    $scope.editBook = function(book) {
+        bookFactory.editBook(book).then(function(data) {
+            $location.url('/books')
+        })
+    }
+
+    $scope.addBook = function(book) {
+        bookFactory.addBook(book).then(function(data) {
+            $location.url('/books')
+        })
+    }
+
+    $scope.removeBook = function(bookId, index) {
+        bookFactory.removeBook(bookId).then(function(data){
+            vm.books.splice(index, 1)
         })
     }
 }

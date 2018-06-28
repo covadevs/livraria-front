@@ -21,6 +21,11 @@ app.config(function ($routeProvider) {
         controllerAs: 'Books',
         templateUrl: 'views/books.html'
     })
+    .when('/books/add', {
+        controller: 'BookController',
+        controllerAs: 'BookAdd',
+        templateUrl: 'views/add-book.html'
+    })
     .when('/authors/:id', {
         controller: 'AuthorController',
         controllerAs: 'Author',
@@ -40,6 +45,11 @@ app.config(function ($routeProvider) {
         controller: 'BookController',
         controllerAs: 'Book',
         templateUrl: 'views/book.html'
+    })
+    .when('/books/:id/edit', {
+        controller: 'BookController',
+        controllerAs: 'BookEdit',
+        templateUrl: 'views/edit-book.html'
     })
     .otherwise({
         redirectTo: '/'

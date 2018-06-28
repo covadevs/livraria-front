@@ -1,6 +1,13 @@
-<h1>New Author</h1>
-
-<form>
-    <input ng-model="AuthorAdd.authorNew.name" type="text" placeholder="Author name here"/>
-    <button type="submit" ng-click="addAuthor(AuthorAdd.authorNew)">CADASTRAR</button>
-</form>
+<div class="outer">
+    <div class="middle">
+        <div class="div-input-container">
+            <h1>New Author</h1>
+            <form>
+                <label>Author Name
+                    <input ng-model="AuthorAdd.authorNew.name" type="text" placeholder="Author name here"/><br>
+                </label>
+                <input type="submit" ng-click="addAuthor(AuthorAdd.authorNew)" value="REGISTER">
+            </form>
+        </div>
+    </div>
+</div>

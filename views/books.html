@@ -1,12 +1,24 @@
 <div>
     <div>
+        <!-- <div style="background-color: #333; width:100%; padding: 10px;">
+            <span style="margin: 10px; color: white; text-transform: uppercase;">Books</span>
+            <button class="add-button" ng-click="goAddBook()" value="add">ADD</button>
+        </div> -->
+        <div>
+                <div style="background-color: #333; padding: 10px; width: 100;">
+                        <h2 style="color: white;text-transform: uppercase;">BOOKS</h2>
+                    </div>
         <table>
             <tr>
                 <th>ID</th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Authors</th>
-                <th>Actions</tg>
+                <th>
+                    <div style="float: right">
+                        <button class="add-button" ng-click="goAddBook()" value="add">NEW</button>
+                    </div>
+                </tg>
             </tr>
             <tr ng-if="Books.books.length > 0" ng-repeat="book in Books.books">
                 <td>{{book.id}}</td>
@@ -18,8 +30,8 @@
                 </td>
                 <td>
                     <div style="display: inline-block; vertical-align: center">
-                        <button class="button" ng-click="goAuthorEdit(author.id)" value="{{$index}}">EDIT</button>
-                        <button class="button" ng-click="removeAuthor(author.id, $index)" value="{{$index}}">REMOVE</button>
+                        <button class="button" ng-click="goEditBook(book.id)" value="{{$index}}">EDIT</button>
+                        <button class="button" ng-click="removeBook(book.id, $index)" value="{{$index}}">REMOVE</button>
                     </div>
                 </td>
             </tr>

@@ -1,0 +1,16 @@
+<div class="outer">
+    <div class="middle">
+        <div class="div-input-container">
+            <h1>New Book</h1>
+            <form>
+                <label> Book Title
+                    <input ng-model="BookAdd.newBook.title" type="text" placeholder="Title"/>
+                </label>
+                <label> Book Description
+                    <input ng-model="BookAdd.newBook.description" type="text" placeholder="Description"/>
+                </label>
+                <input type="submit" ng-click="addBook(BookAdd.newBook)" value="REGISTER">
+            </form>
+        </div>
+    </div>
+</div>

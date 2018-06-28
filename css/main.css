@@ -95,36 +95,19 @@ html, body {
 
 /* Change the color of links on hover */
 .navbar a:hover {
+  transition: 0.3s;
   background-color: #ddd;
   color: black;
 }
 
 /* Add a color to the active/current link */
 .navbar a.active {
-  background-color: #4CAF50;
+  background-color: #303F9F;
   color: white;
 }
 
-/* table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  width: 20%;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-  background-color: black;
-  color: white;
-} */
 table {
   width: 100%;
-  border: 1px solid black;
   border-collapse: collapse;
 }
 
@@ -173,38 +156,39 @@ table th {
 
 /* unvisited link */
 a#authorNameLink:link {
-  color: #4CAF50;
+  color: #303F9F;
   text-decoration: none; 
 }
 
 /* visited link */
 a#authorNameLink:visited {
-  color: #4CAF50;
+  color: #303F9F;
 }
 
 /* mouse over link */
 a#authorNameLink:hover {
-  color: #4CAF50;
+  color: #3F51B5;
 }
 
 /* selected link */
 a#authorNameLink:active {
-  color: #4CAF50;
+  color: #303F9F;
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #303F9F;
   border: none;
   color: white;
   padding: 5px;
-  margin: 1px;
+  width: 100px;
+  margin: 5px;
   text-align: center;
   text-decoration: none;
   font-size: 12px;
 }
 
 .add-button {
-  background-color: #4CAF50; /* Green */
+  background-color: #303F9F;
   border: none;
   color: white;
   padding: 5px;
@@ -212,4 +196,77 @@ a#authorNameLink:active {
   text-align: center;
   text-decoration: none;
   font-size: 12px;
+  width: 100px;
 }
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 15%;
+  margin: 10px;
+  display: inline-block;
+  padding: 10px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.clear { clear: both; height: 60px; }
+.clear-top { clear: both; height: 100px; }
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #303F9F;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #3F51B5;
+}
+
+.div-input-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.div-input-container:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+}
+
+.outer {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* h2 {
+  text-align: center;
+  text-transform: uppercase;
+} */

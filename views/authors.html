@@ -1,14 +1,20 @@
 <div>
     <div>
+        <div style="background-color: #333; padding: 10px; width: 100;">
+            <h2 style="color: white;text-transform: uppercase;">AUTHORS</h2>
+        </div>
         <table>
             <tr>
                 <th>
                     <div style="display: inline-block; vertical-align: center">
                         Author
-                        <button class="add-button" ng-click="goAddAuthor()" value="add">ADD</button>
                     </div>
                 </th>
-                <th></th>
+                <th>
+                    <div style="float: right;">
+                        <button class="add-button" ng-click="goAddAuthor()" value="add">NEW</button>
+                    </div>
+                </th>
             </tr>
             <tr ng-repeat="author in Authors.authors">
                 <td><a id="authorNameLink" href="#/authors/{{author.id}}"> {{ author.name }} </a></td>

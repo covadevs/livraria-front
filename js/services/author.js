@@ -6,6 +6,7 @@ function authorFactory($http, $routeParams, $log) {
   const URL_API = "http://localhost:8080";
 
   var services = {
+      getAuthor             :getAuthor,
       getAuthors            : getAuthors,
       getAuthorBooks        : getAuthorBooks,
       editAuthor            : editAuthor,
@@ -29,6 +30,20 @@ function authorFactory($http, $routeParams, $log) {
           function getAuthorsFailed(error) {
             $log.error('XHR Failed for getAuthors.' + error.data);
           }
+  }
+
+  function getAuthor(authorId) {
+    return $http.get(URL_API+'/authors/'+authorId)
+            .then(getAuthorComplete)
+            .catch(getAuthorFailed)
+
+            function getAuthorComplete(response) {
+              return response.data;
+            }
+
+            function getAuthorFailed(error) {
+              $log.error('XHR Failed for getAuthor.' + error.data);
+            }
   }
 
   function getAuthorBooks() {

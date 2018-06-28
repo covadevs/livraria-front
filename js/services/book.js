@@ -1,13 +1,16 @@
 app.factory('bookFactory', bookFactory)
 
-bookFactory.$inject = ['$http', '$log']
+bookFactory.$inject = ['$http', '$log', '$routeParams']
 
-function bookFactory($http, $log) {
+function bookFactory($http, $log, $routeParams) {
     const URL_API = "http://localhost:8080";
     var services = {
         getBooks: getBooks,
         addAuthorToBook: addAuthorToBook,
-        getBooksAuthorNotContains: getBooksAuthorNotContains
+        getBooksAuthorNotContains: getBooksAuthorNotContains,
+        addBook: addBook,
+        removeBook: removeBook,
+        editBook: editBook        
     }
 
     return services;
@@ -51,6 +54,49 @@ function bookFactory($http, $log) {
     
                 function getBooksAuthorNotContainsFailed(error) {
                   $log.error('XHR Failed for getBooksAuthorNotContains.' + error.data)
+                }
+      }
+
+      function addBook(book) {
+        return $http.post(URL_API+'/books', book)
+                .then(addBookComplete)
+                .catch(addBookFailed)
+
+                function addBookComplete(response) {
+                  return response.data
+                }
+
+                function addBookFailed(error) {
+                  $log.error('XHR Failed for addBook.' + error.data)
+                }
+      }
+
+      function removeBook(bookId) {
+        return $http.delete(URL_API+'/books/'+bookId)
+                .then(removeBookComplete)
+                .catch(removeBookFailed)
+
+                function removeBookComplete(response) {
+                  return response.data
+                }
+
+                function removeBookFailed(error) {
+                  $log.error('XHR Failed for removeBook.' + error.data)
+                }
+      }
+
+      function editBook(book) {
+        const bookId = $routeParams.id
+        return $http.put(URL_API+'/books/'+bookId, book)
+                .then(editBookComplete)
+                .catch(editBookFailed)
+
+                function editBookComplete(response) {
+                  return response.data
+                }
+
+                function editBookFailed(error) {
+                  $log.error('XHR Failed for editBook.' + error.data)
                 }
       }
 }

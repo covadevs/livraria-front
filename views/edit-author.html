@@ -1,6 +1,13 @@
-<h1>Author {{AuthorEdit.authorDetail.name}}</h1>
-
-<form>
-    <input ng-model="AuthorEdit.authorDetail.name"  type="text" placeholder="Your name here" required/>
-    <button type="submit" ng-click="editAuthor(AuthorEdit.authorDetail.name)">ATUALIZAR</button>
-</form>
+<div class="outer">
+    <div class="middle">
+        <div class="div-input-container">
+            <h1>Author {{AuthorEdit.authorDetail.name}}</h1>
+            <form>
+                <label>Author Name
+                    <input ng-model="AuthorEdit.authorDetail.name"  type="text" placeholder="Your name here"/><br>
+                </label>
+                <input type="submit" ng-click="editAuthor(AuthorEdit.authorDetail.name)" value="UPDATE">
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="outer">
+    <div class="middle">
+        <div class="div-input-container">
+            <h1>Book {{BookEdit.bookDetail.title}}</h1>
+            <form>
+                <labe>Book Title
+                    <input ng-model="BookEdit.bookDetail.title"  type="text" placeholder="Title"/><br>
+                </labe>
+                <label>Book Description
+                    <input ng-model="BookEdit.bookDetail.description"  type="text" placeholder="Description"/><br>
+                </label>
+                <input type="submit" ng-click="editBook(BookEdit.bookDetail)" value="UPDATE">
+            </form>
+        </div>
+    </div>
+</div>
