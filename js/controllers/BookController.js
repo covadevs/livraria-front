@@ -85,13 +85,22 @@ function BookController($scope, $routeParams, bookFactory, $location, authorFact
 
     $scope.editBook = function(book) {
         bookFactory.editBook(book).then(function(data) {
-            $location.url('/books')
+            console.log(data)
+            if(data.message == 'book exists') {
+                alert("Book exists!")
+            } else {
+                $location.url("/books")
+            }
         })
     }
 
     $scope.addBook = function(book) {
         bookFactory.addBook(book).then(function(data) {
-            $location.url('/books')
+            if(data.message == 'book exists') {
+                alert("Book exists!")
+            } else {
+                $location.url("/books")
+            }
         })
     }
 

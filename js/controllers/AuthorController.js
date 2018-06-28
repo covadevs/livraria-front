@@ -70,14 +70,23 @@ function AuthorController($scope, authorFactory, $routeParams, $location) {
 
     $scope.addAuthor = function(authorData) {
         authorFactory.addAuthor(authorData).then(function(data) {
-            $location.url("/authors")
+            if(data.message == 'author name exists') {
+                alert("Author name exists!")
+            } else {
+                $location.url("/authors")
+            }
         })
     }
 
     $scope.editAuthor = function (authorName) {
         vm.authorDetail.name = authorName
         authorFactory.editAuthor(vm.authorDetail).then(function(data) {
-            $location.url("/authors")
+            console.log(data)
+            if(data.message == 'author name exists') {
+                alert("Author name exists!")
+            } else {
+                $location.url("/authors")
+            }
         });
     }
 
